@@ -18,5 +18,8 @@ public class BinderRepository {
                 .setID("binder_02")
                 .setTitle("カードゲーム")
                 .build();
+
+        list.add(dummy1);
+        list.
     }
 }
