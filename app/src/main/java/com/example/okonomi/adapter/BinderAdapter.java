@@ -8,7 +8,9 @@ import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 
 import androidx.recyclerview.widget.RecyclerView;
+import android.content.Intent;
 
+import com.example.okonomi.BinderActivity;
 import com.example.okonomi.R;
 
 import android.widget.ImageView;
@@ -77,6 +79,18 @@ public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder
         holder.txtTitle.setText(
                 titles.get(position)
         );
+        holder.itemView.setOnClickListener(v -> {
+
+            Intent intent =
+                    new Intent(
+                            v.getContext(),
+                            BinderActivity.class
+                    );
+
+            v.getContext().startActivity(intent);
+
+        });
+
     }
 
     @Override

@@ -3,14 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="32dp">
 
     <TextView
         android:id="@+id/txtPageNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Page 1"
-        android:textSize="22sp"/>
+        android:textSize="22sp"
+        android:layout_marginBottom="16dp"
+        />
     <TextView
         android:id="@+id/txtPageContent"
         android:layout_width="match_parent"
@@ -23,7 +26,8 @@
         android:id="@+id/btnAddPage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="＋ページ追加"/>
+        android:text="＋ページ追加"
+        android:layout_marginTop="16dp"/>
 
 
 </LinearLayout>
