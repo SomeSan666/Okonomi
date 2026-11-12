@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BinderRepository {
+    /*
     public List<Binder> getDummyBinders(){
         List<Binder> list = new ArrayList<>();
 
@@ -28,4 +29,5 @@ public class BinderRepository {
                 .setTitle("選択したバインダー：" + id)
                 .build();
     }
+    */
 }
