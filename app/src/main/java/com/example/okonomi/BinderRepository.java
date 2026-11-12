@@ -96,4 +96,38 @@ public class BinderRepository {
         void onLoaded(List<BinderEntity> binders);
     }
 
+    // IDを指定してバインダーを取得
+    public void getBinderById(
+            String binderId,
+            OnBinderLoadedListener listener) {
+
+        executor.execute(() -> {
+
+            // Roomからバインダーを取得
+            BinderEntity entity =
+                    database.binderDao().getById(binderId);
+
+            // 見つからなかった場合
+            if (entity == null) {
+                listener.onLoaded(null);
+                return;
+            }
+
+            // BinderEntityからProtoのBinderに変換
+            Binder binder = Binder.newBuilder()
+                    .setId(entity.id)
+                    .setTitle(entity.title)
+                    .build();
+
+            // 取得したデータを呼び出し元に渡す
+            listener.onLoaded(binder);
+        });
+    }
+
+    // バインダー取得完了時に呼び出す処理
+    public interface OnBinderLoadedListener {
+        void onLoaded(Binder binder);
+    }
+
+
 }

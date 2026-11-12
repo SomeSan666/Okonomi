@@ -22,7 +22,12 @@ public class EditorViewModel extends AndroidViewModel {
     public void loadTargetBinder(String targetId) {
        // Binder target = repository.getBinderById(targetId);
         //currentBinder.setValue(target);
+        repository.getBinderById(targetId, binder -> {
+            currentBinder.postValue(binder);
+        });
+
     }
+
 
     public LiveData<Binder> getBinder() {
         return currentBinder;
