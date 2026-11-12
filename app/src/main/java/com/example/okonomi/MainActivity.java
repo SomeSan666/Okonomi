@@ -1,5 +1,5 @@
 package com.example.okonomi;
-
+import com.example.okonomi.adapter.BinderAdapter;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +19,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(
                 new GridLayoutManager(this, 2)
         );
+
+        BinderAdapter adapter =
+                new BinderAdapter();
+
+        recyclerView.setAdapter(adapter);
 
     }
 
