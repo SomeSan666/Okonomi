@@ -1,8 +1,10 @@
+package com.example.okonomi;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.okonomi.BinderDataProto.Binder;
-import com.example.okonomi.BinderRepository;
+
 import java.util.List;
 
 public class BookshelfViewModel extends ViewModel {

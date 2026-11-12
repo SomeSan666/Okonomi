@@ -1,8 +1,9 @@
+package com.example.okonomi;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import com.example.okonomi.BinderDataProto.Binder;
-import com.example.okonomi.BinderRepository;
 
 public class EditorViewModel extends ViewModel {
     private final MutableLiveData<Binder> currentBinder = new MutableLiveData<>();
