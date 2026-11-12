@@ -1,27 +1,32 @@
 package com.example.okonomi;
 
-import android.os.Binder;
-
+import com.example.okonomi.BinderDataProto.Binder;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BinderRepository {
-    /*
+
     public List<Binder> getDummyBinders(){
         List<Binder> list = new ArrayList<>();
 
         Binder dummy1 = Binder.newBuilder()
-                .setID("binder_01")
+                .setId("binder_01")
                 .setTitle("ねこちゃん")
                 .build();
 
-        Binder bummy2 = Binder.newBuilder()
-                .setID("binder_02")
+        Binder dummy2 = Binder.newBuilder()
+                .setId("binder_02")
                 .setTitle("カードゲーム")
                 .build();
 
         list.add(dummy1);
-        list.
+        list.add(dummy2);
+        return list;
     }
-    */
+    public Binder getBinderById(String id){
+        return Binder.newBuilder()
+                .setId(id)
+                .setTitle("選択したバインダー：" + id)
+                .build();
+    }
 }
