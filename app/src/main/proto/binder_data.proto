@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option java_package = "com.example.binderapp.data";
+option java_package = "com.example.okonomi";
 option java_outer_classname = "BinderDataProto";
 
 message Page{
@@ -18,5 +18,5 @@ message Binder{
     int64 updated_at = 4;
     string locked_by = 5;
     int64 lock_timestamp = 6;
-    repeated string image_paths = 5;
+    repeated string image_paths = 7;
     }

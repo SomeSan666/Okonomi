@@ -1,17 +1,18 @@
 plugins {
+    id("com.google.protobuf") version "0.10.1"
     alias(libs.plugins.android.application)
 }
 
 android {
     namespace = "com.example.okonomi"
     compileSdk {
-        version = release(37)
+        version = release(34)
     }
 
     defaultConfig {
         applicationId = "com.example.okonomi"
         minSdk = 24
-        targetSdk = 37
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -44,4 +45,19 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
+    implementation("com.google.protobuf:protobuf-javalite:3.21.12")
+}
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.21.12"
+    }
+    generateProtoTasks {
+        all().forEach { task ->
+            task.builtins {
+                create("java") {
+                    option("lite")
+                }
+            }
+        }
+    }
 }
