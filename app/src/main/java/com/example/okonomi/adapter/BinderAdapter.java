@@ -1,25 +1,54 @@
 package com.example.okonomi.adapter;
+
 import android.view.ViewGroup;
 import android.view.View;
+
 import androidx.annotation.NonNull;
+
 import android.view.LayoutInflater;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.okonomi.R;
+
 import android.widget.ImageView;
 import android.widget.TextView;
-public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder>
-{
+
+import java.util.ArrayList;
+
+public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder> {
+    /*
     private String[] titles = {
             "日記",
             "レシピ",
             "旅行",
             "授業ノート"
-    };
+    };*/
+    private ArrayList<String> titles =
+            new ArrayList<>();
+
+    public BinderAdapter() {
+
+        titles.add("日記");
+        titles.add("レシピ");
+        titles.add("旅行");
+        titles.add("授業ノート");
+
+    }
+
+    public void addTitle(String title) {
+
+        titles.add(title);
+
+        notifyDataSetChanged();
+
+    }
 
     public static class ViewHolder
             extends RecyclerView.ViewHolder {
         ImageView imgCover;
         TextView txtTitle;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgCover =
@@ -29,6 +58,7 @@ public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder
                     itemView.findViewById(R.id.txtTitle);
         }
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(
@@ -45,12 +75,12 @@ public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder
             @NonNull ViewHolder holder,
             int position) {
         holder.txtTitle.setText(
-                titles[position]
+                titles.get(position)
         );
     }
 
     @Override
     public int getItemCount() {
-        return titles.length;
+        return titles.size();
     }
 }
