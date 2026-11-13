@@ -6,13 +6,13 @@ plugins {
 android {
     namespace = "com.example.okonomi"
     compileSdk {
-        version = release(34)
+        version = release(36)
     }
 
     defaultConfig {
         applicationId = "com.example.okonomi"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
