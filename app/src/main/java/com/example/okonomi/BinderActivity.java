@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
+import java.util.UUID;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.Button;
@@ -30,10 +30,17 @@ public class BinderActivity extends AppCompatActivity {
 
     private TextView txtPageNumber;
 
+    private BinderRepository repository;
+    private String binderId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_binder);
+        repository = new BinderRepository(this);
+
+        binderId = getIntent().getStringExtra("binder_id");
+        loadPages();
         Button btnAddPage =
                 findViewById(R.id.btnAddPage);
         txtPageContent =
@@ -62,11 +69,44 @@ public class BinderActivity extends AppCompatActivity {
                                                     "page_content"
                                             );
                                     // 新しいページをリストに追加
-                                    pages.add(new PageData(title, content));
+                                    /*pages.add(new PageData(title, content));
 
                                     // 追加したページを表示する
                                     currentPageIndex = pages.size() - 1;
                                     showCurrentPage();
+
+                                     */
+                                    if (title != null && content != null) {
+
+                                        String pageId = UUID.randomUUID().toString();
+
+                                        int order = pages.size();
+
+                                        PageEntity page = new PageEntity(
+                                                pageId,
+                                                binderId,
+                                                0,
+                                                title,
+                                                content,
+                                                "",
+                                                order
+                                        );
+
+                                        repository.insertPage(page, () -> {
+
+                                            runOnUiThread(() -> {
+
+                                                pages.add(new PageData(title, content));
+
+                                                currentPageIndex = pages.size() - 1;
+
+                                                showCurrentPage();
+
+                                            });
+
+                                        });
+
+                                    }
 
                                 }
 
@@ -180,4 +220,36 @@ public class BinderActivity extends AppCompatActivity {
         }
 
     }
+    private void loadPages() {
+
+        repository.getPagesByBinderId(binderId, loadedPages -> {
+
+            android.util.Log.d(
+                    "PAGE_DEBUG",
+                    "取得したページ数 = " + loadedPages.size()
+            );
+
+
+            runOnUiThread(() -> {
+
+                pages.clear();
+
+                for (PageEntity page : loadedPages) {
+
+                    pages.add(new PageData(
+                            page.title,
+                            page.content
+                    ));
+
+                }
+
+                currentPageIndex = 0;
+                showCurrentPage();
+
+            });
+
+        });
+
+    }
+
 }

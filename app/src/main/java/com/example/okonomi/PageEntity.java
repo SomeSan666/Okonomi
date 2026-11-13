@@ -24,6 +24,8 @@ public class PageEntity {
 
     public int layoutType;
 
+    public String title;
+
     public String content;
 
     public String imagePaths;
@@ -31,7 +33,7 @@ public class PageEntity {
     public int pageOrder;
 
     public PageEntity(String id, String binderId,
-                      int layoutType, String content,
+                      int layoutType, String title,String content,
                       String imagePaths, int pageOrder) {
         this.id = id;
         this.binderId = binderId;

@@ -54,7 +54,9 @@ public class BinderRepository {
                             context.getApplicationContext(),
                             AppDatabase.class,
                             "binder_database"
-                    ).build();
+                    )
+                            .fallbackToDestructiveMigration()
+                            .build();
                 }
             }
         }
@@ -135,5 +137,42 @@ public class BinderRepository {
             onComplete.run();
         });
     }
+
+    // ページをRoomに保存する
+    public void insertPage(PageEntity page, Runnable onComplete) {
+
+        executor.execute(() -> {
+            android.util.Log.d(
+                    "PAGE_DEBUG",
+                    "保存するbinderId = " + page.binderId
+            );
+
+            database.pageDao().insert(page);
+            android.util.Log.d("PAGE_DEBUG", "保存完了");
+            onComplete.run();
+
+        });
+    }
+
+    // 指定したバインダーのページを取得する
+    public void getPagesByBinderId(
+            String binderId,
+            OnPagesLoadedListener listener) {
+
+        executor.execute(() -> {
+
+            List<PageEntity> pages =
+                    database.pageDao().getPagesByBinderId(binderId);
+
+            listener.onLoaded(pages);
+
+        });
+    }
+
+    // ページ取得完了時に呼び出すインターフェース
+    public interface OnPagesLoadedListener {
+        void onLoaded(List<PageEntity> pages);
+    }
+
 
 }
