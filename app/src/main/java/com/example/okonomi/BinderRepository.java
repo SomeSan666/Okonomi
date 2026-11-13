@@ -129,5 +129,11 @@ public class BinderRepository {
         void onLoaded(Binder binder);
     }
 
+    public void insertBinder(BinderEntity binder, Runnable onComplete) {
+        executor.execute(() -> {
+            database.binderDao().insert(binder);
+            onComplete.run();
+        });
+    }
 
 }
