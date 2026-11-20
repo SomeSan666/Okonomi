@@ -8,7 +8,10 @@ import androidx.annotation.NonNull;
 import android.view.LayoutInflater;
 
 import androidx.recyclerview.widget.RecyclerView;
+import android.content.Intent;
 
+import com.example.okonomi.BinderActivity;
+import com.example.okonomi.BinderEntity;
 import com.example.okonomi.R;
 
 import android.widget.ImageView;
@@ -24,22 +27,21 @@ public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder
             "旅行",
             "授業ノート"
     };*/
-    private ArrayList<String> titles =
-            new ArrayList<>();
-
+    //private ArrayList<String> titles = new ArrayList<>();
+    private ArrayList<BinderEntity> binders = new ArrayList<>();
     public BinderAdapter() {
-
+        /*
         titles.add("日記");
         titles.add("レシピ");
         titles.add("旅行");
         titles.add("授業ノート");
-
+        */
     }
 
-    public void addTitle(String title) {
+    public void addBinder(BinderEntity binder) {
 
-        titles.add(title);
-
+        //titles.add(title);
+        binders.add(binder);
         notifyDataSetChanged();
 
     }
@@ -74,13 +76,36 @@ public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder
     public void onBindViewHolder(
             @NonNull ViewHolder holder,
             int position) {
+        /*
         holder.txtTitle.setText(
                 titles.get(position)
         );
+
+         */
+        BinderEntity binder = binders.get(position);
+
+        holder.txtTitle.setText(binder.title);
+        holder.itemView.setOnClickListener(v -> {
+
+            Intent intent =
+                    new Intent(
+                            v.getContext(),
+                            BinderActivity.class
+                    );
+            intent.putExtra("binder_id", binder.id);
+            v.getContext().startActivity(intent);
+
+        });
+
     }
 
     @Override
     public int getItemCount() {
-        return titles.size();
+        return binders.size();
+    }
+
+    public void clearBinders() {
+        binders.clear();
+        notifyDataSetChanged();
     }
 }
