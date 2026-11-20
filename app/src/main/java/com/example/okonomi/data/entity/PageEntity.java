@@ -1,9 +1,10 @@
-package com.example.okonomi;
+package com.example.okonomi.data.entity;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.annotation.NonNull;
+
 @Entity(
         tableName = "pages",
         foreignKeys = @ForeignKey(

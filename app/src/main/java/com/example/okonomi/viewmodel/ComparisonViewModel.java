@@ -1,4 +1,4 @@
-package com.example.okonomi;
+package com.example.okonomi.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -12,7 +12,7 @@ android {
     defaultConfig {
         applicationId = "com.example.okonomi"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -48,6 +48,8 @@ dependencies {
     implementation("com.google.protobuf:protobuf-javalite:3.21.12")
     implementation("androidx.room:room-runtime:2.7.2")
     annotationProcessor("androidx.room:room-compiler:2.7.2")
+    implementation("androidx.room:room-runtime:2.6.1")
+    annotationProcessor("androidx.room:room-compiler:2.6.1")
 }
 protobuf {
     protoc {
