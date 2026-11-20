@@ -4,6 +4,7 @@ import com.example.okonomi.data.repository.BinderRepository;
 import com.example.okonomi.R;
 import com.example.okonomi.adapter.BinderAdapter;
 import android.os.Bundle;
+import com.example.okonomi.util.DeleteDialogHelper;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Button;
@@ -38,27 +39,19 @@ public class MainActivity extends AppCompatActivity {
         // バインダー長押し時の処理
         adapter.setOnBinderLongClickListener(binder -> {
 
-            new AlertDialog.Builder(MainActivity.this)
-                    .setTitle("バインダー削除")
-                    .setMessage("「" + binder.title + "」を削除しますか？")
-                    .setNegativeButton("キャンセル", null)
-                    .setPositiveButton("削除", (dialog, which) -> {
-
-                        // データベースから削除
-                        repository.deleteBinder(binder, () -> {
-
-                            // 削除完了後、画面を更新
-                            runOnUiThread(() -> {
-                                adapter.removeBinder(binder);
-                            });
-
-                        });
-
-                    })
-                    .show();
-
+                    DeleteDialogHelper.show(
+                            MainActivity.this,
+                            "バインダー削除",
+                            "「" + binder.title + "」を削除しますか？",
+                            () -> {
+                                repository.deleteBinder(binder, () -> {
+                                    runOnUiThread(() -> {
+                                        adapter.removeBinder(binder);
+                                    });
+                                });
+                            }
+                    );
         });
-
         loadBinders();
 
         editorLauncher =
