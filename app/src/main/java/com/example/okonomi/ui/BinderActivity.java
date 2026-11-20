@@ -1,9 +1,12 @@
-package com.example.okonomi;
+package com.example.okonomi.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-
+import com.example.okonomi.data.repository.BinderRepository;
 import androidx.activity.EdgeToEdge;
+import com.example.okonomi.data.entity.PageEntity;
+import com.example.okonomi.ui.PageEditorActivity;
+import com.example.okonomi.R;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;

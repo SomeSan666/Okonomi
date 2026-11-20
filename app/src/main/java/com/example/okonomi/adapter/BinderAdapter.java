@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 
-import com.example.okonomi.BinderActivity;
-import com.example.okonomi.BinderEntity;
+import com.example.okonomi.ui.BinderActivity;
+import com.example.okonomi.data.entity.BinderEntity;
 import com.example.okonomi.R;
 
 import android.widget.ImageView;
@@ -29,6 +29,20 @@ public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder
     };*/
     //private ArrayList<String> titles = new ArrayList<>();
     private ArrayList<BinderEntity> binders = new ArrayList<>();
+
+    // 長押しされたときの処理を受け取るインターフェース
+    public interface OnBinderLongClickListener {
+        void onLongClick(BinderEntity binder);
+    }
+
+    // 長押しイベントの受け取り先
+    private OnBinderLongClickListener listener;
+
+    // リスナーを設定するメソッド
+    public void setOnBinderLongClickListener(
+            OnBinderLongClickListener listener) {
+        this.listener = listener;
+    }
     public BinderAdapter() {
         /*
         titles.add("日記");
@@ -106,6 +120,12 @@ public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder
 
     public void clearBinders() {
         binders.clear();
+        notifyDataSetChanged();
+    }
+
+    // バインダーをリストから削除する
+    public void removeBinder(BinderEntity binder) {
+        binders.remove(binder);
         notifyDataSetChanged();
     }
 }
