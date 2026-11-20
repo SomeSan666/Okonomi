@@ -10,8 +10,8 @@ import android.view.LayoutInflater;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 
-import com.example.okonomi.BinderActivity;
-import com.example.okonomi.BinderEntity;
+import com.example.okonomi.ui.BinderActivity;
+import com.example.okonomi.data.entity.BinderEntity;
 import com.example.okonomi.R;
 
 import android.widget.ImageView;

@@ -1,21 +1,21 @@
-package com.example.okonomi;
+package com.example.okonomi.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 import java.util.UUID;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.okonomi.data.repository.BinderRepository;
+import com.example.okonomi.data.entity.PageEntity;
+import com.example.okonomi.R;
 
 import java.util.ArrayList;
 

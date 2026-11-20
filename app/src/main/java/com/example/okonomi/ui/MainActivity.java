@@ -1,4 +1,7 @@
-package com.example.okonomi;
+package com.example.okonomi.ui;
+import com.example.okonomi.data.entity.BinderEntity;
+import com.example.okonomi.data.repository.BinderRepository;
+import com.example.okonomi.R;
 import com.example.okonomi.adapter.BinderAdapter;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -8,7 +11,7 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import android.widget.Toast;
+
 import java.util.UUID;
 public class MainActivity extends AppCompatActivity {
     private BinderAdapter adapter;

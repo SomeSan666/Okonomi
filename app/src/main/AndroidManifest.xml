@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Okonomi">
-        <activity android:name=".EditorActivity" />
+        <activity android:name=".ui.EditorActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Okonomi"
             android:windowSoftInputMode="adjustResize">
@@ -24,11 +24,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".BinderActivity"
+            android:name=".ui.BinderActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".PageEditorActivity"
+            android:name=".ui.PageEditorActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
     </application>

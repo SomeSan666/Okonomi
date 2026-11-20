@@ -1,11 +1,13 @@
-package com.example.okonomi;
+package com.example.okonomi.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.okonomi.R;
 
 public class EditorActivity extends AppCompatActivity {
 

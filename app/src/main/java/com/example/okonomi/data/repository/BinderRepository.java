@@ -1,17 +1,20 @@
-package com.example.okonomi;
+package com.example.okonomi.data.repository;
 
 import com.example.okonomi.BinderDataProto.Binder;
+import com.example.okonomi.data.AppDatabase;
+import com.example.okonomi.data.entity.BinderEntity;
+import com.example.okonomi.data.entity.PageEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 import android.content.Context;
 
 import androidx.room.Room;
 
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 public class BinderRepository {
-    /*
+
     public List<Binder> getDummyBinders(){
         List<Binder> list = new ArrayList<>();
 
@@ -36,7 +39,7 @@ public class BinderRepository {
                 .build();
     }
 
-     */
+
     // データベースを保持
     private static AppDatabase database;
 
