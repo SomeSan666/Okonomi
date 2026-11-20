@@ -38,6 +38,7 @@ public class PageEntity {
         this.id = id;
         this.binderId = binderId;
         this.layoutType = layoutType;
+        this.title = title;
         this.content = content;
         this.imagePaths = imagePaths;
         this.pageOrder = pageOrder;

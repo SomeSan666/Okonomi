@@ -77,9 +77,10 @@ public class BinderRepository {
     }
 
     // バインダーを削除
-    public void deleteBinder(BinderEntity binder) {
+    public void deleteBinder(BinderEntity binder ,Runnable onComplete) {
         executor.execute(() -> {
             database.binderDao().delete(binder);
+            onComplete.run();
         });
     }
 
@@ -172,6 +173,7 @@ public class BinderRepository {
     // ページ取得完了時に呼び出すインターフェース
     public interface OnPagesLoadedListener {
         void onLoaded(List<PageEntity> pages);
+
     }
 
 

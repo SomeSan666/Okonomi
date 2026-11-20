@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.widget.Button;
 import android.content.Intent;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -29,7 +30,34 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new BinderAdapter();
         recyclerView.setAdapter(adapter);
+        //loadBinders();
+
+        // バインダー長押し時の処理
+        adapter.setOnBinderLongClickListener(binder -> {
+
+            new AlertDialog.Builder(MainActivity.this)
+                    .setTitle("バインダー削除")
+                    .setMessage("「" + binder.title + "」を削除しますか？")
+                    .setNegativeButton("キャンセル", null)
+                    .setPositiveButton("削除", (dialog, which) -> {
+
+                        // データベースから削除
+                        repository.deleteBinder(binder, () -> {
+
+                            // 削除完了後、画面を更新
+                            runOnUiThread(() -> {
+                                adapter.removeBinder(binder);
+                            });
+
+                        });
+
+                    })
+                    .show();
+
+        });
+
         loadBinders();
+
         editorLauncher =
                 registerForActivityResult(
                         new ActivityResultContracts.StartActivityForResult(),

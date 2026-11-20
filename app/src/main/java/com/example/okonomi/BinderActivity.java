@@ -1,5 +1,5 @@
 package com.example.okonomi;
-
+import androidx.appcompat.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -40,14 +40,14 @@ public class BinderActivity extends AppCompatActivity {
         repository = new BinderRepository(this);
 
         binderId = getIntent().getStringExtra("binder_id");
-        loadPages();
+
         Button btnAddPage =
                 findViewById(R.id.btnAddPage);
         txtPageContent =
                 findViewById(R.id.txtPageContent);
 
         txtPageNumber = findViewById(R.id.txtPageNumber);
-
+        loadPages();
         pageLauncher =
                 registerForActivityResult(
                         new ActivityResultContracts.StartActivityForResult(),
@@ -235,6 +235,22 @@ public class BinderActivity extends AppCompatActivity {
                 pages.clear();
 
                 for (PageEntity page : loadedPages) {
+
+                    android.util.Log.d(
+                            "PAGE_DEBUG",
+                            "ページID = " + page.id
+                    );
+
+                    android.util.Log.d(
+                            "PAGE_DEBUG",
+                            "ページタイトル = " + page.title
+                    );
+
+                    android.util.Log.d(
+                            "PAGE_DEBUG",
+                            "ページ内容 = " + page.content
+                    );
+
 
                     pages.add(new PageData(
                             page.title,

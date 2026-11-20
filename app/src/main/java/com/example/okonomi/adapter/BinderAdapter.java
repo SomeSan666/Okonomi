@@ -29,6 +29,21 @@ public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder
     };*/
     //private ArrayList<String> titles = new ArrayList<>();
     private ArrayList<BinderEntity> binders = new ArrayList<>();
+
+    // 長押しされたときの処理を受け取るインターフェース
+    public interface OnBinderLongClickListener {
+        void onLongClick(BinderEntity binder);
+    }
+
+    // 長押しイベントの受け取り先
+    private OnBinderLongClickListener listener;
+
+    // 長押しイベントの受け取り先を設定
+    public void setOnBinderLongClickListener(OnBinderLongClickListener listener) {
+        this.listener = listener;
+    }
+
+
     public BinderAdapter() {
         /*
         titles.add("日記");
@@ -50,6 +65,8 @@ public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder
             extends RecyclerView.ViewHolder {
         ImageView imgCover;
         TextView txtTitle;
+
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -97,6 +114,16 @@ public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder
 
         });
 
+        // バインダーを長押ししたとき
+        holder.itemView.setOnLongClickListener(v -> {
+
+            if (listener != null) {
+                listener.onLongClick(binder);
+            }
+
+            return true;
+        });
+
     }
 
     @Override
@@ -106,6 +133,12 @@ public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder
 
     public void clearBinders() {
         binders.clear();
+        notifyDataSetChanged();
+    }
+
+    // バインダーを一覧から削除
+    public void removeBinder(BinderEntity binder) {
+        binders.remove(binder);
         notifyDataSetChanged();
     }
 }
