@@ -111,6 +111,14 @@ public class BinderAdapter extends RecyclerView.Adapter<BinderAdapter.ViewHolder
 
         });
 
+        // バインダーを長押ししたとき
+        holder.itemView.setOnLongClickListener(v -> {
+            if (listener != null) {
+                listener.onLongClick(binder);
+            }
+            return true;
+        });
+
     }
 
     @Override
